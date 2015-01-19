@@ -55,7 +55,6 @@ class Dotenv
      * Set a variable using:
      * - putenv
      * - $_ENV
-     * - $_SERVER
      *
      * The environment variable value is stripped of single and double quotes.
      *
@@ -74,7 +73,6 @@ class Dotenv
 
         putenv("$name=$value");
         $_ENV[$name] = $value;
-        $_SERVER[$name] = $value;
     }
 
     /**
@@ -234,8 +232,6 @@ class Dotenv
         switch (true) {
             case array_key_exists($name, $_ENV):
                 return $_ENV[$name];
-            case array_key_exists($name, $_SERVER):
-                return $_SERVER[$name];
             default:
                 $value = getenv($name);
 
